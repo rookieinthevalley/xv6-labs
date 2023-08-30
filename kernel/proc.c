@@ -119,6 +119,9 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->interval = 0;
+  p->handler = (void *)0;
+  p->count = 0;
 
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
@@ -654,3 +657,4 @@ procdump(void)
     printf("\n");
   }
 }
+
